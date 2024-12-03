@@ -1,0 +1,6 @@
+
+$ddcpod3winprod = Get-DatastoreCluster -Name "ddc-pod3-win-prod"
+$datastores = Get-Datastore | where { $_.ExtensionData.Parent -eq $ddcpod3winprod.Id }
+ForEach ($Datastore in $Datastores) {
+    Remove-OrphanedData -Datastore $Datastore.name
+}
